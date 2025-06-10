@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Last Talk? 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #f8bbd0 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-family: 'Parisienne', cursive;
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+        }
+        p:nth-child(2) { animation-delay: 0.5s; }
+        p:nth-child(3) { animation-delay: 1.5s; }
+        p:nth-child(4) { animation-delay: 2.5s; }
+        .buttons {
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeIn 1s 3.5s forwards;
+        }
+        .btn {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 12px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-yes {
+            background: linear-gradient(45deg, #a5d6a7, #81c784);
+            color: white;
+        }
+        .btn-yes:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(129, 199, 132, 0.4);
+        }
+        .btn-later {
+            background: linear-gradient(45deg, #ffcc80, #ffb74d);
+            color: white;
+        }
+        .btn-later:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 183, 77, 0.4);
+        }
+        .btn-hug {
+            background: linear-gradient(45deg, #ce93d8, #ba68c8);
+            color: white;
+        }
+        .btn-hug:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(186, 104, 200, 0.4);
+        }
+        .hidden {
+            display: none;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .emoji { font-size: 1.3rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hey... I’m having one of those days. <span class="emoji">🌧️</span></h1>
+        
+        <p>You know those days when everything feels heavy? Yeah, today’s one of them. And for some reason, I kept thinking... maybe you’d get it. <span class="emoji">💭</span></p>
+        
+        <p>Remember when we used to talk for hours? Like time didn’t exist. I miss that—not just us, but the way you listened. You always knew the right questions to ask. <span class="emoji">🌀</span></p>
+        
+        <p>So here’s me, throwing this into the universe: If I asked you to meet me—just once, no expectations—to listen... would you say yes? <span class="emoji">🌸</span><br><small>(Or is this too bold? <span class="emoji">🙈</span>)</small></p>
+        
+        <div class="buttons">
+            <button class="btn btn-yes" onclick="showResponse('yes')">🌿 Yes, I’ll hear you out</button>
+            <button class="btn btn-later" onclick="showResponse('later')">🍂 Let’s talk later</button>
+            <button class="btn btn-hug" onclick="showResponse('hug')">🌸 Send a virtual hug instead</button>
+        </div>
+        
+        <div id="response-yes" class="hidden">
+            <p>Thank you. 💌 I’ll email you details (check your inbox). <br>— Silvia</p>
+            <form id="emailForm" style="display: none;">
+                <input type="email" id="userEmail" placeholder="Your email (to notify me)" required>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+        <div id="response-later" class="hidden">
+            <p>I’ll wait. Take your time. <span class="emoji">⏳</span></p>
+        </div>
+        <div id="response-hug" class="hidden">
+            <p>Sending you warmth back. <span class="emoji">🫂✨</span></p>
+        </div>
+    </div>
+
+    <script>
+        function showResponse(type) {
+            document.querySelectorAll('.hidden').forEach(el => el.style.display = 'none');
+            document.getElementById(`response-${type}`).style.display = 'block';
+            
+            if (type === 'yes') {
+                document.getElementById('emailForm').style.display = 'block';
+            }
+            
+            // Optional: Send email notification to you (requires backend)
+            // fetch('https://your-email-service.com', { method: 'POST', body: JSON.stringify({ response: type }) });
+        }
+        
+        // Easter egg: Triple-click to show a hidden message
+        let clickCount = 0;
+        document.body.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount === 3) {
+                alert("Thanks for caring. Means a lot. 💖");
+                clickCount = 0;
+            }
+        });
+    </script>
+</body>
+</html>
